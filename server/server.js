@@ -5,8 +5,8 @@ const app = express()
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const colors = require('colors')
-
-// parse application/x-www-form-urlencoded
+const path = require('path')
+    // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
@@ -14,6 +14,10 @@ app.use(bodyParser.json())
 
 // importa las rutas GLOBAL
 app.use(require('./routes/index'));
+
+
+// Habilitar la carpeta public
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 
 //conecto a mongodb
